@@ -1,38 +1,33 @@
--- Drops the database if it exists --
-DROP DATABASE IF EXISTS workforce_db;
+-- Deletes then recreates the employee_tracker_db if one already exists
+DROP DATABASE IF EXISTS employee_tracker_db;
 
--- Create the database  
-CREATE DATABASE workforce_db;
+CREATE DATABASE employee_tracker_db;
 
--- Specify database to use
-USE workforce_db;
+USE employee_tracker_db;
 
--- Create the table department
+-- Creates department table with id & department name
 CREATE TABLE department (
-id INT PRIMARY KEY NOT NULL,
-name VARCHAR(30) auto_increment NOT NULL,
-PRIMARY KEY(id)
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    title VARCHAR(30) NOT NULL
 );
 
--- Create the table role
-CREATE TABLE role (
-id INT PRIMARY KEY NOT NULL,
-title VARCHAR(30) NOT NULL,
-salary DECIMAL NOT NULL,
-department INT,
-FOREIGN KEY (department)
-REFERENCES department (id)
+-- Creates job roles tables with id, job title, salary, and department id
+CREATE TABLE roles (
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    title VARCHAR(30) NOT NULL,
+    salary DECIMAL NOT NULL,
+    department_id INT NOT NULL,
+    FOREIGN KEY (department_id)
+    REFERENCES department (id)
 );
 
--- Create the table employees that will hold the name, role, and manager 
--- Manager is the only value that is not required
-CREATE TABLE employee (
-  id INT PRIMARY KEY,
-  first_name varchar(30) NOT NULL,
-  last_name varchar(30) NOT NULL,
-  role_id INT,
-  manager_id integer,
-  FOREIGN KEY (role_id) 
-  REFERENCES role(id) on delete set null
-  
+-- Creates employees table with id, first name, last name, role, and manager id
+CREATE TABLE employees (
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(30) NOT NULL,
+    role_id INT NOT NULL,
+    manager_id INT,
+    FOREIGN KEY (role_id)
+    REFERENCES roles (id)
 );
