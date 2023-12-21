@@ -110,7 +110,7 @@ function viewEmplAll () {
   query += "from employee inner join role on (employee.role_id = role.id) ";
 
   //add join department by department id and foreign key in role table
-  query += "inner join department on role.department_id = department.id "; 
+  query += "inner join department on role.department = department.id "; 
 
   //add left join only so that employee information will display as manager even if the manager id is null
   query += "left join employee as m on employee.manager_id = m.id "

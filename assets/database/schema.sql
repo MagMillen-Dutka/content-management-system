@@ -9,28 +9,30 @@ USE workforce_db;
 
 -- Create the table department
 CREATE TABLE department (
-id INT PRIMARY KEY,
-name VARCHAR(30) NOT NULL,
+id INT PRIMARY KEY NOT NULL,
+name VARCHAR(30) auto_increment NOT NULL,
 PRIMARY KEY(id)
 );
 
 -- Create the table role
 CREATE TABLE role (
-id INT PRIMARY KEY,
-title VARCHAR(30),
-salary DECIMAL,
+id INT PRIMARY KEY NOT NULL,
+title VARCHAR(30) NOT NULL,
+salary DECIMAL NOT NULL,
 department INT,
+FOREIGN KEY (department)
+REFERENCES department (id)
 );
 
 -- Create the table employees that will hold the name, role, and manager 
 -- Manager is the only value that is not required
--- role_id and manager_id are foreign keys; when an appointment or manager is deleted, the values will be set to null
 CREATE TABLE employee (
   id INT PRIMARY KEY,
   first_name varchar(30) NOT NULL,
   last_name varchar(30) NOT NULL,
-  role INT,
+  role_id INT,
   manager_id integer,
-  FOREIGN KEY (role) REFERENCES role(id) on delete set null,
-  FOREIGN KEY (manager_id) REFERENCES employee(id) on delete set null
+  FOREIGN KEY (role_id) 
+  REFERENCES role(id) on delete set null
+  
 );
