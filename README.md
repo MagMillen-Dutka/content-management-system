@@ -61,7 +61,9 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 ## Sources
 
-Template taken from Zach Mutch  [Github](https://github.com/that-devguy) and amended to ensure it worked according to specific needs.
+Code snippets taken from Zach Mutch and tailored to specific needs of this application. Amendments made to runPrompt functions as well as adding exit/contAction function to end the process if no further actions required.
+
+Zach Mutch's [Github](https://github.com/that-devguy).
 
 ## Repository:
 [Solution URL Link](https://github.com/MagMillen-Dutka/content-management-system)
